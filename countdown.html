@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>新年元旦倒数计时</title>
+<style type="text/css">
+  
+html {
+  display: grid;
+  min-height: 100%;
+}
+
+body {
+  display: grid;
+  background: #183059;
+}
+
+h1 {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  margin-top: 2em;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #F6F4F3;
+}
+
+#nextYear {
+  text-align: center;
+  color:white;
+}
+
+#timer {
+  color: #F6F4F3;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  font-size: .5em;
+  letter-spacing: 5px;
+}
+
+.days, .hours, .minutes, .seconds {
+  display: inline-block;
+  padding: 1px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+.days {
+  background: #EF2F3C;
+}
+
+.hours {
+  background: #F6F4F3;
+  color: #183059;
+}
+
+.minutes {
+  background: #276FBF;
+}
+
+.seconds {
+  background: #F0A202;
+}
+
+.numbers {
+  font-family: "Montserrat", sans-serif;
+  color: #183059;
+  font-size: 5em;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div id="timer"></div>
+<script type="text/javascript">
+  
+const year = new Date().getFullYear()+1;
+const fourthOfJuly = new Date(year, 0, 1).getTime();
+
+var countdown = function() {
+
+    // get today's date
+    const today = new Date().getTime();
+
+    // get the difference
+    const diff = fourthOfJuly - today;
+
+    // math
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // display
+    document.getElementById("timer").innerHTML =
+      "<div class=\"days\"> \
+        <div class=\"numbers\">" + days + "</div>天</div> \
+      <div class=\"hours\"> \
+        <div class=\"numbers\">" + hours + "</div>时</div> \
+      <div class=\"minutes\"> \
+        <div class=\"numbers\">" + minutes + "</div>分</div> \
+      <div class=\"seconds\"> \
+        <div class=\"numbers\">" + seconds + "</div>秒</div> \
+      </div>";
+
+};
+
+countdown();
+let timer = setInterval(countdown, 1000);
+</script>
+
+</body>
+</html>
